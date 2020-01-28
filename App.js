@@ -2,8 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { SignIn } from './Sign-In/SignIn';
+import SignIn  from './Sign-In/SignIn';
 import { SignUp } from './Sign-Up/SignUp';
+import { Provider } from 'react-redux';
+import configureStore from './configureStore';
+
+const store = configureStore();
 
 const StackNavigation = createStackNavigator(
   {
@@ -21,7 +25,9 @@ const StackNavigation = createStackNavigator(
 
 export default function App() {
   return (
+    <Provider store={store}>
       <AppContainer/>
+    </Provider>
   );
 }
 
@@ -34,4 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  stackNavigationStyle: {
+    backgroundColor: '#1e3799',
+  }
 });
