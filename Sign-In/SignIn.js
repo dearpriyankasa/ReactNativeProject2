@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Image, TextInput, TouchableOpacity , SafeAreaView, KeyboardAvoidingView, Linking } from 'react-native';
 import styles from '../styles';
-import { makeLoginCall } from '../actions';
+import { makeLoginCall } from '../actions/actions_login';
 import { connect } from 'react-redux';
 class SignIn extends Component {
     state = {
@@ -19,9 +19,9 @@ class SignIn extends Component {
     handlePassword = (password) => {
         this.setState({password: password})
     }
-    loginSuccessfully = (email, password) => {
-        alert('Login success!');
-        this.props.login();
+    loginSuccessfully = () => {
+        alert(this.props.state.login.message);
+        this.props.login(this.state);
     }
 
     render() {
@@ -49,7 +49,7 @@ class SignIn extends Component {
                         onChangeText={this.handlePassword}
                         secureTextEntry
                     ></TextInput>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => this.loginSuccessfully(this.state.email, this.state.password)}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => this.loginSuccessfully()}>
                         <Text style={styles.buttonText}>LOGIN</Text>
                     </TouchableOpacity>
                     <Text style={styles.signUpText}>New User? 
@@ -62,15 +62,14 @@ class SignIn extends Component {
 } 
 
 function mapStateToProps(state) {
-    console.log("State received is----------------------", state);
     return {
-        state: state.state
+        state: state.login
     }
 }
 
  function mapDispatchToProps(dispatch) {
     return {
-      login: () => dispatch(makeLoginCall())
+      login: (body) => dispatch(makeLoginCall(body))
     }
 }
 

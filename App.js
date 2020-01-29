@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import SignIn  from './Sign-In/SignIn';
-import { SignUp } from './Sign-Up/SignUp';
+import SignIn from './Sign-In/SignIn';
+import SignUp from './Sign-Up/SignUp';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 

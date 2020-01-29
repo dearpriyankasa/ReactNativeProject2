@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 import styles from '../styles';
+import { makeSignUpCall } from '../actions/actions_signup';
+import { connect } from 'react-redux';
 
-export class SignUp extends Component {
+class SignUp extends Component {
     state = {
         firstname: '',
         lastname: '',
@@ -10,6 +12,10 @@ export class SignUp extends Component {
         password: '',
         confirm_password: ''
     }
+    constructor(props) {
+        super(props);
+    }
+
     handleFirstname = (firstname) => {
         this.setState({firstname: firstname})
     }
@@ -25,13 +31,9 @@ export class SignUp extends Component {
     handleConfirmPassword = (confirm_password) => {
         this.setState({confirm_password: confirm_password})
     }
-    signUpSuccessfully = (firstname, lastname, email, password, confirm_password) => {
-        alert('Sign up succesful');
-        console.log("Firstname is -->", firstname);
-        console.log("Lastname is -->", lastname);
-        console.log("Email is -->", email);
-        console.log("Password is -->", password);
-        console.log("Confirm Password is -->", confirm_password);
+    signUpSuccessfully = () => {
+        alert(this.props.state.signUp.message);
+        this.props.signUp(this.state);
     }
 
     render() {
@@ -87,7 +89,7 @@ export class SignUp extends Component {
                         secureTextEntry
                         onChangeText={this.handleConfirmPassword}
                     ></TextInput>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => this.signUpSuccessfully(this.state.firstname, this. state.lastname, this.state.email, this.state.password, this.state.confirm_password)}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => this.signUpSuccessfully()}>
                         <Text style={styles.buttonText}>SIGN UP</Text>
                     </TouchableOpacity>
                     <Text style={styles.signUpText}>
@@ -99,4 +101,17 @@ export class SignUp extends Component {
     }
 }
 
-export default SignUp
+function mapStateToProps(state) {
+    return {
+        state: state.signup
+    }
+    
+}
+
+ function mapDispatchToProps(dispatch) {
+    return {
+      signUp: (body) => dispatch(makeSignUpCall(body))
+    }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(SignUp)
