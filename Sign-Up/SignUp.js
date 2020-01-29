@@ -42,7 +42,7 @@ class SignUp extends Component {
                 <SafeAreaView style={styles.logoContainer}>
                     <Image style={styles.logo} source={require('../assets/Images/Shorelinelogo.png')}/>
                 </SafeAreaView>
-                <SafeAreaView style={styles.formContainer}>
+                <View style={styles.formContainer}>
                     <TextInput 
                         placeholder=" *First Name" 
                         placeholderTextColor="white" 
@@ -95,7 +95,7 @@ class SignUp extends Component {
                     <Text style={styles.signUpText}>
                         <Text style={{ textDecorationLine: 'underline' }} onPress={() => this.props.navigation.navigate('SignIn')}>Go back to Sign-In</Text>
                     </Text>
-                </SafeAreaView>
+                </View>
             </KeyboardAvoidingView>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image, TextInput, TouchableOpacity , SafeAreaView, KeyboardAvoidingView, Linking } from 'react-native';
+import { Text, Image, TextInput, TouchableOpacity , SafeAreaView, KeyboardAvoidingView, Linking, View } from 'react-native';
 import styles from '../styles';
 import { makeLoginCall } from '../actions/actions_login';
 import { connect } from 'react-redux';
@@ -30,7 +30,7 @@ class SignIn extends Component {
                 <SafeAreaView style={styles.logoContainer}>
                     <Image style={styles.logo} source={require('../assets/Images/Shorelinelogo.png')}/>
                 </SafeAreaView>
-                <SafeAreaView style={styles.formContainer}>
+                <View style={styles.formContainer}>
                     <TextInput 
                         placeholder=" *E-mail" 
                         placeholderTextColor="white" 
@@ -55,7 +55,7 @@ class SignIn extends Component {
                     <Text style={styles.signUpText}>New User? 
                         <Text style={{ textDecorationLine: 'underline' }} onPress={() => this.props.navigation.navigate('SignUp')}>Sign-Up</Text>
                     </Text>
-                </SafeAreaView>
+                </View>
             </KeyboardAvoidingView>
         )
     }
