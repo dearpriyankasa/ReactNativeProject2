@@ -2,6 +2,7 @@ import { LOGIN_PROGERSS, LOGIN_SUCCESS, LOGIN_FAILURE } from '../constants';
 
 //For login
 export function makeLoginCall(body) {
+    console.log("Login action performed");
     return(dispatch) => {
         dispatch(login())
         fetch('http://192.168.0.176:5900/api/v2/auth/login', {
@@ -17,12 +18,14 @@ export function makeLoginCall(body) {
 }
 
 function login() {
+    //returns an action
     return {
         type: LOGIN_PROGERSS
     }
 }
 
 function loginSuccess(data) {
+    console.log("inside login success ; data is --------------->", data);
     return {
         type: LOGIN_SUCCESS,
         data
@@ -34,45 +37,3 @@ function loginFailure(err) {
         type: LOGIN_FAILURE
     }
 }
-
-
-// //For SignUp
-// export function makeSignUpCall(body) {
-//     return(dispatch) => {
-//         dispatch(signup())
-//         fetch('http://192.168.0.176:5900/api/v2/auth/signup', {
-//                 method: 'POST',
-//                 body: JSON.stringify(body)
-//             })
-//             .then(res => {return res.json()})
-//             .then(json => {
-//                 dispatch(signupSuccess(json)) 
-//             })
-//             .catch(err => dispatch(signupFailure(err)))
-//     }
-// }
-
-// function signup() {
-//     return {
-//         type: SIGNUP_PROGERSS
-//     }
-// }
-
-// function signupSuccess(data) {
-//     return {
-//         type: SIGNUP_SUCCESS,
-//         data
-//     }
-// }
-
-// function signupFailure(err) {
-//     return {
-//         type: SIGNUP_FAILURE
-//     }
-
-
-
-
-
-
-

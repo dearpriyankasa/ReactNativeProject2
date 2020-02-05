@@ -7,10 +7,11 @@ const initialState = {
 }
 
 export default function loginReducer(state = initialState, action) {
+    console.log("login reducer called" + action.type);
     switch(action.type) {
         case LOGIN_PROGERSS:
             return {
-                ...state,
+                ...state,  //creates a copy of the state object and only changes the values that needto be changed
                 isLoggingIn: true,
                 login: []
             }
